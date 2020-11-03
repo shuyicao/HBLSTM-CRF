@@ -84,11 +84,11 @@ def select(parameters, length):
 
 hidden_size_lstm_1 = 200
 hidden_size_lstm_2 = 200
-tags = 39
+tags = 41
 word_dim = 300
 proj1 = 200
 proj2 = 100
-words = 20001
+words = 40001
 batchSize = 2
 log_dir = "train"
 model_dir = "DAModel"
@@ -219,7 +219,7 @@ class DAModel():
 
 
         with tf.variable_scope("train_op"):
-            optimizer = tf.train.AdagradOptimizer(0.1)
+            optimizer = tf.train.AdamOptimizer(0.001)
             #if tf.greater(self.clip , 0):
             grads, vs = zip(*optimizer.compute_gradients(self.loss))
             grads, gnorm = tf.clip_by_global_norm(grads, self.clip)
